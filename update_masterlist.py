@@ -19,7 +19,7 @@ def extract_poll_data(post):
             return result
 
 async def get_poll_posts():
-    url = "https://www.tumblr.com/api/v2/blog/mcytblrsexymen/posts?api_key=JKPppFyQfsM3fbVBWAaYstnE5u7X6nPbv8MtCfQHfUQwc2sNLH&npf=true&tag=Actual%20Polls&limit=50"
+    url = "https://www.tumblr.com/api/v2/blog/mcytblrsexymen/posts?api_key=[insert your own API key here]&npf=true&tag=Actual%20Polls&limit=50"
     headers = {"User-Agent" : "	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0"}
     async with aiohttp.ClientSession() as session:
         async with session.get(url, headers = headers) as response:
