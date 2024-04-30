@@ -3,8 +3,6 @@
 #pip install aiohttp
 
 while :; do
-    #command -v pip > "sexyman-poll/data/test.txt"
-    #python3 ../protected/test.py
     python3 ../protected/update_masterlist.py
     for i in {1..10}
     do

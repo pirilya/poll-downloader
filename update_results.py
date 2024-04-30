@@ -3,9 +3,10 @@ import asyncio
 import aiohttp
 import os
 import urllib
+import platform
 
 async def get_poll_result(folder, post_id, poll_data, session, headers):
-    result_url = f"https://www.tumblr.com/api/v2/polls/mcytblrsexymen/{post_id}/{poll_data['client_id']}/results"
+    result_url = f"https://www.tumblr.com/api/v2/polls/ao3topshipsbracket/{post_id}/{poll_data['client_id']}/results"
     async with session.get(result_url, headers = headers) as response:
         poll_result = await response.json()
     assert poll_result["meta"]["status"] == 200
@@ -33,7 +34,7 @@ async def get_poll_result(folder, post_id, poll_data, session, headers):
 
 
 async def main():
-    folder = "sexyman-poll/data"
+    folder = "polls/tumblrtopships/data"
     with open(os.path.join(folder, "polls.json"), "r") as f:
         raw_data = f.read()
     polls = json.loads(raw_data)
@@ -44,6 +45,6 @@ async def main():
 
 
 
-#asyncio.run(main()) # this should be a less verbose way of doing the below and yet this throws errors and the below does not. Strange!
-
-asyncio.get_event_loop().run_until_complete(main())
+if platform.system()=='Windows': # thank you https://stackoverflow.com/questions/45600579/asyncio-event-loop-is-closed-when-getting-loop
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+asyncio.run(main())
